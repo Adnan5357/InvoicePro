@@ -1,0 +1,81 @@
+.why-choose-section {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.why-choose-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.why-choose-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.benefit-icon {
+  color: var(--primary-green);
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.why-choose-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-card {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
+}
+
+.stats-card h3 {
+  color: white;
+  font-weight: 600;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
