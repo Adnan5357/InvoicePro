@@ -1,0 +1,532 @@
+/* ============================================
+   Auth Pages — Split-screen layout
+   Left: white form panel | Right: dark teal panel
+   ============================================ */
+
+/* Container — full viewport */
+.auth-container {
+    display: flex;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+/* The card spans the entire viewport */
+.auth-card {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---- Left Side: Form ---- */
+.auth-left {
+    flex: 1;
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #ffffff;
+    max-width: 540px;
+}
+
+.auth-logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+    display: block;
+    text-decoration: none;
+}
+
+.auth-header {
+    margin-bottom: 1.75rem;
+}
+
+.auth-title {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.35rem;
+    line-height: 1.2;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.auth-subtitle {
+    color: #6b7280;
+    font-size: 0.92rem;
+}
+
+/* Form */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.05rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #1a1a2e;
+    font-size: 0.85rem;
+}
+
+.form-input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    transition: all 0.2s ease;
+    background-color: #f5f6f8;
+    color: #333;
+}
+
+.form-input::placeholder {
+    color: #a0a0a0;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #0f2f3f;
+    box-shadow: 0 0 0 3px rgba(15, 47, 63, 0.08);
+    background-color: #ffffff;
+}
+
+/* Password wrapper for eye icon */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper .form-input {
+    padding-right: 2.75rem;
+    width: 100%;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #a0a0a0;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.password-toggle:hover {
+    color: #0f2f3f;
+}
+
+/* Terms & Conditions checkbox */
+.auth-terms {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.auth-terms input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #0f2f3f;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.auth-terms label {
+    font-size: 0.85rem;
+    color: #4a4a4a;
+    cursor: pointer;
+}
+
+.auth-terms a {
+    color: #0f2f3f;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-terms a:hover {
+    text-decoration: underline;
+}
+
+/* Submit button */
+.auth-button {
+    background: #1a3a4a;
+    color: white;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: 0.5rem;
+    letter-spacing: 0.3px;
+}
+
+.auth-button:hover {
+    background: #0f2f3f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(15, 47, 63, 0.25);
+}
+
+.auth-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Divider ("Or") */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.75rem 0;
+}
+
+.auth-divider span {
+    color: #9ca3af;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+/* Social login buttons */
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 50px;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.social-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Footer */
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.auth-link {
+    color: #0f2f3f;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 0.25rem;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+/* Error message */
+.error-message {
+    background-color: #fef2f2;
+    color: #dc2626;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #dc2626;
+    font-size: 0.88rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+/* ---- Right Side: Dark Teal Decorative Panel ---- */
+.auth-right {
+    flex: 1.15;
+    background: #0f2f3f;
+    padding: 3rem 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative scattered squares */
+.decorative-squares span {
+    position: absolute;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+}
+
+/* Individual square positions */
+.decorative-squares .sq-1 {
+    width: 40px;
+    height: 40px;
+    top: 8%;
+    left: 6%;
+}
+
+.decorative-squares .sq-2 {
+    width: 20px;
+    height: 20px;
+    top: 15%;
+    right: 10%;
+}
+
+.decorative-squares .sq-3 {
+    width: 30px;
+    height: 30px;
+    bottom: 25%;
+    left: 8%;
+}
+
+.decorative-squares .sq-4 {
+    width: 50px;
+    height: 50px;
+    bottom: 8%;
+    right: 15%;
+}
+
+.decorative-squares .sq-5 {
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 3%;
+}
+
+.decorative-squares .sq-6 {
+    width: 24px;
+    height: 24px;
+    bottom: 12%;
+    left: 30%;
+}
+
+.decorative-squares .sq-7 {
+    width: 18px;
+    height: 18px;
+    top: 5%;
+    right: 30%;
+}
+
+.decorative-squares .sq-8 {
+    width: 35px;
+    height: 35px;
+    bottom: 4%;
+    right: 4%;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Analytics card (line chart) */
+.analytics-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    width: 340px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    margin-bottom: -30px;
+}
+
+.analytics-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.analytics-card-header h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.analytics-tabs {
+    display: flex;
+    gap: 0;
+    background: #f3f4f6;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.analytics-tabs span {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.analytics-tabs span.active {
+    background: #1a3a4a;
+    color: #ffffff;
+    border-radius: 6px;
+}
+
+.chart-area {
+    height: 80px;
+    margin-bottom: 0.75rem;
+}
+
+.chart-area svg {
+    width: 100%;
+    height: 100%;
+}
+
+.chart-days {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+/* Donut chart card */
+.donut-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 1.25rem;
+    width: 140px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 3;
+    margin-left: 180px;
+    margin-top: -10px;
+}
+
+.donut-card svg {
+    width: 100%;
+    height: auto;
+}
+
+.donut-label {
+    text-align: center;
+    margin-top: 0.25rem;
+}
+
+.donut-label .percentage {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    display: block;
+}
+
+.donut-label .label-text {
+    font-size: 0.65rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Right panel content text */
+.auth-right-content {
+    position: relative;
+    z-index: 2;
+    max-width: 85%;
+    margin-top: 2rem;
+}
+
+.auth-description-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    color: #ffffff;
+}
+
+.auth-description-text {
+    font-size: 0.92rem;
+    opacity: 0.75;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+/* ---- Mobile Responsive ---- */
+@media (max-width: 900px) {
+    .auth-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .auth-right {
+        display: none;
+    }
+
+    .auth-left {
+        max-width: 100%;
+        padding: 2.5rem 2rem;
+    }
+
+    .auth-container {
+        padding: 0;
+        min-height: 100vh;
+    }
+}
+
+@media (max-width: 500px) {
+    .auth-left {
+        padding: 2rem 1.25rem;
+    }
+
+    .social-buttons {
+        flex-direction: column;
+    }
+
+    .auth-title {
+        font-size: 1.5rem;
+    }
+}
