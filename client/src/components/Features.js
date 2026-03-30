@@ -35,10 +35,10 @@ const Features = () => {
       link: '/invoice-history'
     },
     {
-      icon: 'bi-shield-check',
-      title: 'Secure & Reliable',
-      description: 'Bank-level encryption ensures your data is safe. Regular backups and 99.9% uptime guarantee.',
-      link: '/security'
+      icon: 'bi-speedometer2',
+      title: 'Dashboard Analytics',
+      description: 'Get real-time insights into your revenue, pending payments, and top clients with beautiful visual charts.',
+      link: '/dashboard'
     }
   ];
 

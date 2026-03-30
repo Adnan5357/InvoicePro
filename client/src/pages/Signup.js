@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { register } from '../services/api';
+import authIllustration from '../assets/auth-illustration.png';
 import '../styles/Auth.css';
 
 const Signup = () => {
@@ -44,7 +45,8 @@ const Signup = () => {
         try {
             const { name, email, password } = formData;
             await register({ name, email, password });
-            navigate('/');
+            window.dispatchEvent(new Event('userUpdated'));
+            navigate('/dashboard');
         } catch (err) {
             setError(
                 err.response && err.response.data.message
@@ -61,16 +63,23 @@ const Signup = () => {
             <div className="auth-card">
                 {/* Left Side - Form */}
                 <div className="auth-left">
-                    <Link to="/" className="auth-logo">Invoice Pro</Link>
+                    <Link to="/" className="auth-logo">
+                        <svg className="auth-logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 34L24 14L36 14L24 34H12Z" fill="#6c63ff" />
+                            <path d="M18 28L30 8L42 8L30 28H18Z" fill="#6c63ff" opacity="0.6" />
+                        </svg>
+                    </Link>
+
                     <div className="auth-header">
-                        <h2 className="auth-title">Create an account</h2>
+                        <h2 className="auth-title">Create Account</h2>
+                        <p className="auth-subtitle">Please fill in your details</p>
                     </div>
 
                     {error && <div className="error-message">{error}</div>}
 
                     <form className="auth-form" onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label className="form-label" htmlFor="name">Name</label>
+                            <label className="form-label" htmlFor="name">Full Name</label>
                             <input
                                 type="text"
                                 id="name"
@@ -84,7 +93,7 @@ const Signup = () => {
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label" htmlFor="email">Email</label>
+                            <label className="form-label" htmlFor="email">Email Address</label>
                             <input
                                 type="email"
                                 id="email"
@@ -92,7 +101,7 @@ const Signup = () => {
                                 className="form-input"
                                 value={email}
                                 onChange={handleChange}
-                                placeholder="Enter your mail"
+                                placeholder="Enter your email"
                                 required
                             />
                         </div>
@@ -160,84 +169,39 @@ const Signup = () => {
                         </div>
 
                         <button type="submit" className="auth-button" disabled={loading}>
-                            {loading ? 'Creating Account...' : 'Sign up'}
+                            {loading ? 'Creating Account...' : (
+                                <>Sign Up <span className="btn-arrow">→</span></>
+                            )}
                         </button>
                     </form>
 
                     <div className="auth-footer">
                         Already have an account?
-                        <Link to="/login" className="auth-link">Log in</Link>
+                        <Link to="/login" className="auth-link">Log In</Link>
                     </div>
                 </div>
 
-                {/* Right Side - Dark Teal Decorative */}
+                {/* Right Side - Purple Decorative */}
                 <div className="auth-right">
-                    <div className="decorative-squares">
-                        <span className="sq-1"></span>
-                        <span className="sq-2"></span>
-                        <span className="sq-3"></span>
-                        <span className="sq-4"></span>
-                        <span className="sq-5"></span>
-                        <span className="sq-6"></span>
-                        <span className="sq-7"></span>
-                        <span className="sq-8"></span>
-                    </div>
-
-                    {/* Analytics line chart card */}
-                    <div className="analytics-card">
-                        <div className="analytics-card-header">
-                            <h3>Analytics</h3>
-                            <div className="analytics-tabs">
-                                <span>Weekly</span>
-                                <span className="active">Monthly</span>
-                                <span>Yearly</span>
-                            </div>
-                        </div>
-                        <div className="chart-area">
-                            <svg viewBox="0 0 280 80" preserveAspectRatio="none">
-                                <defs>
-                                    <linearGradient id="chartGrad1" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stopColor="#0f2f3f" stopOpacity="0.15" />
-                                        <stop offset="100%" stopColor="#0f2f3f" stopOpacity="0.01" />
-                                    </linearGradient>
-                                    <linearGradient id="chartGrad2" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stopColor="#6bc5ce" stopOpacity="0.12" />
-                                        <stop offset="100%" stopColor="#6bc5ce" stopOpacity="0.01" />
-                                    </linearGradient>
-                                </defs>
-                                {/* Area fills */}
-                                <path d="M0,60 Q40,50 70,35 T140,30 T210,20 T280,15 L280,80 L0,80 Z" fill="url(#chartGrad1)" />
-                                <path d="M0,55 Q40,60 70,45 T140,50 T210,35 T280,40 L280,80 L0,80 Z" fill="url(#chartGrad2)" />
-                                {/* Lines */}
-                                <path d="M0,60 Q40,50 70,35 T140,30 T210,20 T280,15" fill="none" stroke="#0f2f3f" strokeWidth="2" strokeLinecap="round" />
-                                <path d="M0,55 Q40,60 70,45 T140,50 T210,35 T280,40" fill="none" stroke="#6bc5ce" strokeWidth="2" strokeLinecap="round" strokeDasharray="4,3" />
-                            </svg>
-                        </div>
-                        <div className="chart-days">
-                            <span>MON</span>
-                            <span>TUE</span>
-                            <span>WED</span>
-                            <span>THU</span>
-                        </div>
-                    </div>
-
-                    {/* Donut chart card */}
-                    <div className="donut-card">
-                        <svg viewBox="0 0 100 100">
-                            <circle cx="50" cy="50" r="38" fill="none" stroke="#e5e7eb" strokeWidth="12" />
-                            <circle cx="50" cy="50" r="38" fill="none" stroke="#0f2f3f" strokeWidth="12"
-                                strokeDasharray="238.76" strokeDashoffset="138.68"
-                                strokeLinecap="round" transform="rotate(-90 50 50)" />
-                            <text x="50" y="46" textAnchor="middle" fontSize="10" fill="#9ca3af" fontWeight="500">Total</text>
-                            <text x="50" y="60" textAnchor="middle" fontSize="16" fill="#1a1a2e" fontWeight="800">42%</text>
-                        </svg>
+                    <div className="illustration-card">
+                        <img
+                            src={authIllustration}
+                            alt="Person working on laptop"
+                            className="illustration-img"
+                        />
                     </div>
 
                     <div className="auth-right-content">
-                        <h2 className="auth-description-title">Very simple way you can engage</h2>
+                        <h2 className="auth-description-title">Seamless work experience</h2>
                         <p className="auth-description-text">
-                            Welcome to Invoice Pro! Efficiently create professional invoices, track payments, and manage your business with ease.
+                            Everything you need in an easily customizable dashboard
                         </p>
+                    </div>
+
+                    <div className="carousel-dots">
+                        <span className="carousel-dot active"></span>
+                        <span className="carousel-dot"></span>
+                        <span className="carousel-dot"></span>
                     </div>
                 </div>
             </div>

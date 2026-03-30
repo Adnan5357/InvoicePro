@@ -21,18 +21,18 @@ const Hero = () => {
               Create Professional Invoices in Minutes
             </h1>
             <p className="hero-subtitle">
-              Streamline your billing process with Invoice Pro. Generate beautiful, 
-              GST-compliant invoices, manage clients effortlessly, and get paid faster. 
+              Streamline your billing process with Invoice Pro. Generate beautiful,
+              GST-compliant invoices, manage clients effortlessly, and get paid faster.
               Trusted by thousands of businesses worldwide.
             </p>
             <div className="hero-buttons mt-4">
-              <button 
+              <button
                 className="btn btn-success btn-lg me-3"
                 onClick={handleGetStarted}
               >
                 Get Started Free
               </button>
-              <button 
+              <button
                 className="btn btn-outline-primary btn-lg"
                 onClick={handleWatchDemo}
               >

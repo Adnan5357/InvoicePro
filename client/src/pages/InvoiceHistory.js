@@ -145,7 +145,7 @@ const InvoiceHistory = () => {
                     </div>
                     <div className="text-end">
                         <h5 className="mb-0">Invoice Pro</h5>
-                        <p className="small text-muted mb-0">123 Business St.<br />New Delhi, India</p>
+                        <p className="small text-muted mb-0">{(() => { try { const u = JSON.parse(sessionStorage.getItem('user')); return u?.name || 'My Business'; } catch { return 'My Business'; } })()}<br />New Delhi, India</p>
                     </div>
                 </div>
 

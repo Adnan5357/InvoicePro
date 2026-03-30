@@ -13,7 +13,7 @@ const api = axios.create({
 // Add token to requests if it exists
 api.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -26,8 +26,8 @@ api.interceptors.request.use(
 export const register = async (userData) => {
     const response = await axios.post(`${API_URL}/register`, userData);
     if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data));
+        sessionStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('user', JSON.stringify(response.data));
     }
     return response.data;
 };
@@ -35,23 +35,34 @@ export const register = async (userData) => {
 export const login = async (userData) => {
     const response = await axios.post(`${API_URL}/login`, userData);
     if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data));
+        sessionStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('user', JSON.stringify(response.data));
     }
     return response.data;
 };
 
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
 };
 
 export const socialLogin = async (userData) => {
     const response = await axios.post(`${API_URL}/social`, userData);
     if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data));
+        sessionStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('user', JSON.stringify(response.data));
     }
+    return response.data;
+};
+
+// Profile services
+export const getProfile = async () => {
+    const response = await api.get('/user/profile');
+    return response.data;
+};
+
+export const updateProfile = async (profileData) => {
+    const response = await api.put('/user/profile', profileData);
     return response.data;
 };
 
