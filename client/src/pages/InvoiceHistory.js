@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import api from '../services/api';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 const InvoiceHistory = () => {
+    const navigate = useNavigate();
     const [invoices, setInvoices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('All');
@@ -72,17 +74,20 @@ const InvoiceHistory = () => {
         }
     };
 
-    const handleStatusChange = async (id, newStatus) => {
-        setUpdatingStatusId(id);
-        try {
-            const response = await api.put(`/invoices/${id}/status`, { status: newStatus });
-            setInvoices(invoices.map(inv => inv._id === id ? { ...inv, status: response.data.status } : inv));
-        } catch (error) {
-            console.error('Error updating status:', error);
-            alert(error.response?.data?.message || 'Failed to update status.');
-        } finally {
-            setUpdatingStatusId(null);
-        }
+    const handleStatusChange = (id, newStatus) => {
+        // Delay React state update so Bootstrap's click listeners can close the dropdown first
+        setTimeout(async () => {
+            setUpdatingStatusId(id);
+            try {
+                const response = await api.put(`/invoices/${id}/status`, { status: newStatus });
+                setInvoices(prev => prev.map(inv => inv._id === id ? { ...inv, status: response.data.status } : inv));
+            } catch (error) {
+                console.error('Error updating status:', error);
+                alert(error.response?.data?.message || 'Failed to update status.');
+            } finally {
+                setUpdatingStatusId(null);
+            }
+        }, 150);
     };
 
     // View invoice details
@@ -145,7 +150,7 @@ const InvoiceHistory = () => {
                     </div>
                     <div className="text-end">
                         <h5 className="mb-0">Invoice Pro</h5>
-                        <p className="small text-muted mb-0">{(() => { try { const u = JSON.parse(sessionStorage.getItem('user')); return u?.name || 'My Business'; } catch { return 'My Business'; } })()}<br />New Delhi, India</p>
+                        <p className="small text-muted mb-0">{(() => { try { const u = JSON.parse(sessionStorage.getItem('user')); return u?.name || 'My Business'; } catch { return 'My Business'; } })()}</p>
                     </div>
                 </div>
 
@@ -291,10 +296,10 @@ const InvoiceHistory = () => {
                                                             data-bs-toggle="dropdown"
                                                             aria-expanded="false"
                                                             disabled={updatingStatusId === inv._id}
-                                                            style={{ minWidth: '100px' }}
+                                                            style={{ width: '120px' }}
                                                         >
                                                             {updatingStatusId === inv._id ? (
-                                                                <><span className="spinner-border spinner-border-sm me-1"></span>Updating...</>
+                                                                <><span className="spinner-border spinner-border-sm me-1"></span>Updating</>
                                                             ) : inv.status}
                                                         </button>
                                                         <ul className="dropdown-menu">
@@ -340,6 +345,13 @@ const InvoiceHistory = () => {
                                                         disabled={downloadingId === inv._id}
                                                     >
                                                         <i className={`bi ${downloadingId === inv._id ? 'bi-hourglass-split' : 'bi-download'}`}></i>
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-sm btn-light me-1"
+                                                        title="Share / Export PDF"
+                                                        onClick={() => navigate(`/pdf-export?id=${inv._id}`)}
+                                                    >
+                                                        <i className="bi bi-share"></i>
                                                     </button>
                                                     <button
                                                         className="btn btn-sm btn-light me-1"

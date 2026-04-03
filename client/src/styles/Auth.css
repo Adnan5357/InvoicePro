@@ -8,18 +8,19 @@
 /* Container — full viewport */
 .auth-container {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     background: #e8e8ec;
     font-family: 'Inter', sans-serif;
     padding: 20px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* The card spans the viewport */
 .auth-card {
     display: flex;
     width: 100%;
-    min-height: calc(100vh - 40px);
+    height: calc(100vh - 40px);
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.12);
@@ -47,6 +48,7 @@
     background: #ffffff;
     max-width: 520px;
     position: relative;
+    overflow: hidden;
 }
 
 /* Logo */

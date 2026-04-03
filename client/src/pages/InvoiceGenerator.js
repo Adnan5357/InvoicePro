@@ -312,7 +312,7 @@ const InvoiceGenerator = () => {
                                 </div>
                                 <div className="text-end">
                                     <h5 className="mb-0">Invoice Pro</h5>
-                                    <p className="small text-muted mb-0">123 Business St.<br />New Delhi, India</p>
+                                    <p className="small text-muted mb-0">123 Business St.</p>
                                 </div>
                             </div>
 

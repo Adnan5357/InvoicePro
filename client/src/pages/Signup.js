@@ -198,11 +198,6 @@ const Signup = () => {
                         </p>
                     </div>
 
-                    <div className="carousel-dots">
-                        <span className="carousel-dot active"></span>
-                        <span className="carousel-dot"></span>
-                        <span className="carousel-dot"></span>
-                    </div>
                 </div>
             </div>
         </div>
